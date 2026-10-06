@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Local scratch and test scripts
+server/scratch/
+server/check_*.js
+server/test_*.js
+

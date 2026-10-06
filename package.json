@@ -1,0 +1,13 @@
+{
+  "name": "bper-optinext2",
+  "private": true,
+  "version": "0.0.0",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspaces",
+    "build": "cd client && npm run build"
+  }
+}

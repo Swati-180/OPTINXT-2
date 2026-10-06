@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Libre+Baskerville:italic&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Libre Baskerville', serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    --background: oklch(0.98 0.01 240); /* Very light blue-ish gray background */
+    --foreground: oklch(0.15 0.02 240);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.15 0.02 240);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.15 0.02 240);
+    --primary: #165BAA; /* Professional Blue */
+    --primary-foreground: oklch(0.98 0 0);
+    --secondary: oklch(0.96 0.01 240);
+    --secondary-foreground: oklch(0.2 0.02 240);
+    --muted: oklch(0.96 0.01 240);
+    --muted-foreground: oklch(0.5 0.02 240);
+    --accent: oklch(0.96 0.01 240);
+    --accent-foreground: oklch(0.2 0.02 240);
+    --destructive: oklch(0.55 0.2 25);
+    --border: oklch(0.9 0.01 240);
+    --input: oklch(0.9 0.01 240);
+    --ring: #165BAA;
+    --radius: 0.5rem;
+
+    /* Global UI consistency tokens */
+    --ui-surface: #ffffff;
+    --ui-surface-muted: #f7faff;
+    --ui-border-soft: #d9e4f2;
+    --ui-shadow-card: 0 6px 16px rgba(16, 42, 80, 0.06);
+
+    /* Motion consistency tokens */
+    --motion-duration-enter: 220ms;
+    --motion-duration-interactive: 220ms;
+    --motion-duration-loading: 1100ms;
+    --motion-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  html {
+    @apply font-sans;
+    }
+  select {
+    @apply appearance-none bg-white border border-[#DCE6F3] text-sm text-[#2B4467] rounded-xl px-4 py-2.5 shadow-[0_2px_8px_rgba(16,42,80,0.04)] outline-none focus:border-[#6E97CB] focus:ring-4 focus:ring-[#D7E6F7]/50 transition-all cursor-pointer font-medium hover:border-[#BFD3EA];
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236A809E' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+}
+
+@layer utilities {
+  .app-page {
+    animation: app-reveal-down var(--motion-duration-enter) var(--motion-ease-standard);
+    will-change: opacity, transform;
+  }
+
+  .app-page-stagger > * {
+    opacity: 0;
+    animation: app-reveal-down calc(var(--motion-duration-enter) + 40ms) var(--motion-ease-standard) forwards;
+    will-change: opacity, transform;
+  }
+
+  .app-page-stagger > * > * {
+    opacity: 0;
+    animation: app-reveal-down calc(var(--motion-duration-enter) + 70ms) var(--motion-ease-standard) forwards;
+    will-change: opacity, transform;
+  }
+
+  .app-page-stagger > *:nth-child(1),
+  .app-page-stagger > * > *:nth-child(1) { animation-delay: 40ms; }
+  .app-page-stagger > *:nth-child(2),
+  .app-page-stagger > * > *:nth-child(2) { animation-delay: 95ms; }
+  .app-page-stagger > *:nth-child(3),
+  .app-page-stagger > * > *:nth-child(3) { animation-delay: 150ms; }
+  .app-page-stagger > *:nth-child(4),
+  .app-page-stagger > * > *:nth-child(4) { animation-delay: 205ms; }
+  .app-page-stagger > *:nth-child(5),
+  .app-page-stagger > * > *:nth-child(5) { animation-delay: 260ms; }
+  .app-page-stagger > *:nth-child(6),
+  .app-page-stagger > * > *:nth-child(6) { animation-delay: 315ms; }
+  .app-page-stagger > *:nth-child(7),
+  .app-page-stagger > * > *:nth-child(7) { animation-delay: 370ms; }
+  .app-page-stagger > *:nth-child(8),
+  .app-page-stagger > * > *:nth-child(8) { animation-delay: 425ms; }
+  .app-page-stagger > *:nth-child(9),
+  .app-page-stagger > * > *:nth-child(9) { animation-delay: 480ms; }
+  .app-page-stagger > *:nth-child(10),
+  .app-page-stagger > * > *:nth-child(10) { animation-delay: 535ms; }
+  .app-page-stagger > *:nth-child(11),
+  .app-page-stagger > * > *:nth-child(11) { animation-delay: 590ms; }
+  .app-page-stagger > *:nth-child(12),
+  .app-page-stagger > * > *:nth-child(12) { animation-delay: 645ms; }
+
+  .app-reveal-down {
+    animation: app-reveal-down var(--motion-duration-enter) var(--motion-ease-standard);
+  }
+
+  .app-no-reveal {
+    animation: none !important;
+  }
+
+  .app-card-surface {
+    border: 1px solid var(--ui-border-soft);
+    background: var(--ui-surface);
+    box-shadow: var(--ui-shadow-card);
+    border-radius: 1rem;
+  }
+
+  .transition-all,
+  .transition-colors,
+  .transition-transform,
+  .transition-opacity {
+    transition-duration: var(--motion-duration-interactive) !important;
+    transition-timing-function: var(--motion-ease-standard) !important;
+  }
+
+  .animate-in {
+    animation-duration: var(--motion-duration-enter) !important;
+    animation-timing-function: var(--motion-ease-standard) !important;
+  }
+
+  /* Replace circular spinner behavior with smooth top-to-bottom loading motion */
+  .animate-spin {
+    animation: app-loading-vertical var(--motion-duration-loading) var(--motion-ease-standard) infinite !important;
+  }
+
+  .app-loading-line {
+    border-radius: 999px;
+    background: #dbe6f4;
+    opacity: 0.85;
+    animation: app-loading-vertical var(--motion-duration-loading) var(--motion-ease-standard) infinite;
+  }
+  
+  .app-skeleton-line {
+    border-radius: 999px;
+    background: linear-gradient(180deg, #eaf1fb 0%, #d8e6f7 46%, #edf4fd 100%);
+    background-size: 100% 240%;
+    animation: app-skeleton-sweep 1200ms ease-in-out infinite;
+  }
+
+  .app-loading-dot {
+    display: inline-block;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 999px;
+    background: #3b82f6;
+    animation: app-loading-vertical 900ms var(--motion-ease-standard) infinite;
+  }
+
+  .auth-spinner {
+    animation: auth-spinner-rotate 0.9s linear infinite;
+  }
+
+  .custom-scrollbar {
+    scrollbar-gutter: stable both-edges;
+  }
+
+  .app-stable-panel {
+    width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-page,
+  .app-reveal-down,
+  .app-page-stagger > *,
+  .app-page-stagger > * > *,
+  .app-skeleton-line,
+  .app-loading-dot {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@keyframes app-reveal-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes app-loading-vertical {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-4px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes app-skeleton-sweep {
+  0% {
+    background-position: 50% 0%;
+    opacity: 0.68;
+  }
+  50% {
+    background-position: 50% 55%;
+    opacity: 1;
+  }
+  100% {
+    background-position: 50% 100%;
+    opacity: 0.68;
+  }
+}
+
+@keyframes auth-spinner-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
