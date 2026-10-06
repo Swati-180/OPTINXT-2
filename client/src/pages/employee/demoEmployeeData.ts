@@ -5,7 +5,7 @@ export const demoEmployeeProfile: EmployeeSnapshot = {
   name: "QG User1",
   email: "employee.demo@bper.local",
   title: "Sr. Executive",
-  department: "F &A",
+  department: "HR",
   client: "BU011",
   assignedClient: "BU011",
   location: "Noida",
