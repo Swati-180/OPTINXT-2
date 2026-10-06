@@ -11,6 +11,7 @@ env:
   BACKEND_IMAGE_NAME: bper-backend-2
   CONTAINER_APP_NAME: bper-backend-2
   CONTAINER_APP_RESOURCE_GROUP: bper-rg
+  AZURE_SUBSCRIPTION_ID: cdde377a-7f09-46e1-8d17-9d340ed65031
   CONTAINER_APP_ENVIRONMENT_ID: /subscriptions/cdde377a-7f09-46e1-8d17-9d340ed65031/resourceGroups/eleviq-rg/providers/Microsoft.App/managedEnvironments/eleviq-backend-env
   SWA_URL: https://nice-mud-064e7e11e.2.azurestaticapps.net
 
@@ -32,6 +33,9 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Set Azure subscription
+        run: az account set --subscription ${{ env.AZURE_SUBSCRIPTION_ID }}
+
       - name: Log in to Azure Container Registry
         run: az acr login --name ${{ env.AZURE_CONTAINER_REGISTRY }}
 
@@ -52,11 +56,20 @@ jobs:
           SP_CLIENT_ID=$(echo "$AZURE_CREDS" | jq -r '.clientId')
           SP_CLIENT_SECRET=$(echo "$AZURE_CREDS" | jq -r '.clientSecret')
 
-          if az containerapp show -n $CONTAINER_APP_NAME -g $CONTAINER_APP_RESOURCE_GROUP &>/dev/null; then
+          az account set --subscription "$AZURE_SUBSCRIPTION_ID"
+          echo "Checking Container Apps Environment..."
+          if ! az containerapp env show --ids "$CONTAINER_APP_ENVIRONMENT_ID" --subscription "$AZURE_SUBSCRIPTION_ID" &>/dev/null; then
+            echo "::error::Container Apps Environment not visible: $CONTAINER_APP_ENVIRONMENT_ID"
+            echo "The service principal ($SP_CLIENT_ID) needs Reader/Contributor on eleviq-rg."
+            exit 1
+          fi
+
+          if az containerapp show -n $CONTAINER_APP_NAME -g $CONTAINER_APP_RESOURCE_GROUP --subscription "$AZURE_SUBSCRIPTION_ID" &>/dev/null; then
             echo "Updating existing Container App..."
             az containerapp update \
               -n $CONTAINER_APP_NAME \
               -g $CONTAINER_APP_RESOURCE_GROUP \
+              --subscription "$AZURE_SUBSCRIPTION_ID" \
               --image "$IMAGE" \
               --set-env-vars \
                 "NODE_ENV=production" \
@@ -72,7 +85,8 @@ jobs:
             az containerapp create \
               -n $CONTAINER_APP_NAME \
               -g $CONTAINER_APP_RESOURCE_GROUP \
-              --environment "${{ env.CONTAINER_APP_ENVIRONMENT_ID }}" \
+              --subscription "$AZURE_SUBSCRIPTION_ID" \
+              --environment "$CONTAINER_APP_ENVIRONMENT_ID" \
               --image "$IMAGE" \
               --registry-server ${AZURE_CONTAINER_REGISTRY}.azurecr.io \
               --registry-username "$SP_CLIENT_ID" \
@@ -96,6 +110,7 @@ jobs:
           FQDN=$(az containerapp show \
             -n $CONTAINER_APP_NAME \
             -g $CONTAINER_APP_RESOURCE_GROUP \
+            --subscription "${{ env.AZURE_SUBSCRIPTION_ID }}" \
             --query properties.configuration.ingress.fqdn \
             -o tsv)
           echo "aca_url=https://${FQDN}" >> $GITHUB_OUTPUT
