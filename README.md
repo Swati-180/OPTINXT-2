@@ -259,15 +259,10 @@ See `deployment_guide.md` for full Azure and Vercel/Render setup steps.
 
 | Person | Role | Primary Responsibility | Support / Notes |
 | --- | --- | --- | --- |
-| Swati Borkar | Frontend Owner | Frontend work and integration work across tasks | Primary owner for auth, routing, employee flows, and key portal integration |
-| Yash Raj | Frontend | Frontend work and integration work support | Supports portal separation, WDT UI, dashboards, reports, and fixes |
-| Ujjwal | Frontend | Frontend support and implementation support | Supports frontend tasks and fixes; not primary owner for frontend subtasks |
-| Ayan Baraskar | Backend | Auth, WDT workflow, review workflow, audit, admin approvals | Primary backend owner for auth and WDT-heavy tasks |
-| Akshat Tamrakar | Backend | AI mapping, reports, 6x6, fitment, process visibility, API consistency | Primary backend owner for analytics and business logic tasks |
-| Aryan Goti | Database / Atlas | Atlas setup, seed data, schema/data verification | Primary owner for database readiness and DB-side validation |
-| Abhay Singh | Database / Atlas | Atlas support, data checks, query/data validation | Supports seed data, DB debugging, and validation |
-| Chitrekha Sahu | Helper / QA | Review support, testing, validation, and selected non-critical helper tasks | Supports retesting, validation, documentation checks, and light helper work; not primary owner for highly technical subtasks |
-| Aashna Tamrakar | Helper / QA | Review support, testing, validation, and selected non-critical helper tasks | Supports retesting, validation, data checks, and light helper work; not primary owner for highly technical subtasks |
+| Swati Borkar | Frontend Owner and Backend Owner | Frontend work and integration work across tasks | Primary owner for auth, routing, employee flows, and key portal integration |
+ Backend | Auth, WDT workflow, review workflow, audit, admin approvals | Primary backend owner for auth and WDT-heavy tasks |
+| AI mapping, reports, 6x6, fitment, process visibility, API consistency | Primary backend owner for analytics and business logic tasks |
+
 
 ## Acknowledgements
 
